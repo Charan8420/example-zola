@@ -1,0 +1,21 @@
+{# templates/macros.html #}
+{% macro secondary_navbar() %}
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#secondaryNavbar" aria-controls="secondaryNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="secondaryNavbar">
+                <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                    {% set docs_section = get_section(path="docs/_index.md") %}
+                    {% for subsection in docs_section.subsections %}
+                        {% set section = get_section(path=subsection) %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ section.permalink }}">{{ section.title }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+{% endmacro %}
